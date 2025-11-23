@@ -219,21 +219,28 @@
 
 <body>
   <div class="app" role="main">
+          <!-- Header here -->
     <header>
-      <div class="header-top">
-        <div>
-          <h1>Loan Portfolio</h1>
-          <p class="lead">Compact tiles • mini-charts show cumulative principal & interest • KPI drawers & Loan drawers on the right</p>
-        </div>
-        <div style="display:flex;gap:10px;align-items:center">
-          <div style="font-size:13px;color:var(--muted)">Name:<button id="themeToggle" class="theme-icon" title="Toggle dark mode">🌙</button>  <strong style="color:var(--brand)">Jeff Customer</strong></div>
-        </div>
+  <div class="header-top">
+
+    <div>
+      <h1>Loan Portfolio — Amortization</h1>
+      <p class="lead">Compact tiles • mini-charts show cumulative principal & interest • KPI drawers & Loan drawers on the right</p>
+
+      <div class="current-date" style="margin-top:4px;">
+        Current Month: <strong id="currentMonthLabel">18</strong>
       </div>
+    </div>
 
-      <div class="current-date">Current Month: <strong id="currentMonthLabel">18</strong> (months since first purchase)</div>
-    
+    <!-- User + Toggle aligned to the right -->
+    <div style="display:flex; gap:10px; align-items:center;">
+      <div style="font-size:13px; color:var(--muted)">
+        User: <strong style="color:var(--brand)">Jeff A Customer</strong>
+      </div>
+      <button id="themeToggle" class="theme-icon" title="Toggle dark mode">🌙</button>
+    </div>
 
-
+  </div>
 </header>
 
 
