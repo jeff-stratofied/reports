@@ -169,12 +169,15 @@
       transform:translateX(110%);
       transition:transform .28s cubic-bezier(.2,.9,.3,1), background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
       z-index:90;
-      overflow:auto;
-      padding:20px;
+      overflow:hidden;
+      padding:0;
       border-left:1px solid var(--border);
+      display:flex;
+      flex-direction:column;
     }
     .drawer.open{ transform:translateX(0) }
 
+    .drawer-header{ padding:20px; flex-shrink:0; }
     .drawer-head{ display:flex; align-items:start; justify-content:space-between; gap:8px }
     .close-btn{
       background:#f1f5f9;
@@ -186,6 +189,16 @@
     }
     .drawer h2{ margin:0 0 6px; font-size:20px }
     .muted{ color:var(--muted); font-size:13px; margin-bottom:10px }
+
+    .drawer-body,
+    #drawerBody{ flex:1 1 auto; overflow-y:auto; overflow-x:hidden; padding:0 20px 20px; }
+
+    .drawer,
+    .drawer-body,
+    #drawerBody{ overflow-x:hidden; }
+
+    .drawer-footer{ flex-shrink:0; padding:20px; }
+    .drawer-footer .actions{ justify-content:flex-start; }
 
     .drawer-chart{
       height:220px;
@@ -311,19 +324,21 @@
 
   <!-- Right drawer -->
   <aside id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-head">
-      <div>
-        <h2 id="drawerTitle">Drawer</h2>
-        <div class="muted" id="drawerSub">details</div>
-      </div>
+    <div class="drawer-header">
+      <div class="drawer-head">
+        <div>
+          <h2 id="drawerTitle">Drawer</h2>
+          <div class="muted" id="drawerSub">details</div>
+        </div>
 
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn" id="downloadCsvBtn">Download CSV</button>
-        <button class="close-btn" id="closeBtn" aria-label="Close drawer">✕</button>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn" id="downloadCsvBtn">Download CSV</button>
+          <button class="close-btn" id="closeBtn" aria-label="Close drawer">✕</button>
+        </div>
       </div>
     </div>
 
-    <div id="drawerBody">
+    <div id="drawerBody" class="drawer-body">
       <div class="drawer-chart" id="drawerChartArea"></div>
       <div class="legend" id="drawerLegend" style="display:none"></div>
 
@@ -355,9 +370,11 @@
       </div>
     </div>
 
-    <div class="actions" style="padding-top:10px">
-      <button class="btn" id="printBtn">Print</button>
-      <button class="btn primary" id="copyCsvBtn">Copy CSV</button>
+    <div class="drawer-footer">
+      <div class="actions">
+        <button class="btn" id="printBtn">Print</button>
+        <button class="btn primary" id="copyCsvBtn">Copy CSV</button>
+      </div>
     </div>
   </aside>
 
@@ -630,6 +647,7 @@
     const drawerSecondary = document.getElementById('drawerSecondary');
     const drawerPrimaryTitle = document.getElementById('drawerPrimaryTitle');
     const drawerSecondaryTitle = document.getElementById('drawerSecondaryTitle');
+    const drawerBody = document.getElementById('drawerBody');
     const amortBody = document.getElementById('amortBody');
     const drawerChartArea = document.getElementById('drawerChartArea');
     const drawerLegend = document.getElementById('drawerLegend');
@@ -849,7 +867,7 @@
 
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
-      drawer.scrollTop = 0;
+      drawerBody.scrollTop = 0;
     }
 
     /* ============================
@@ -963,6 +981,7 @@
 
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
+      drawerBody.scrollTop = 0;
     }
 
     function renderTPVDrawer() {
@@ -1077,6 +1096,7 @@
 
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
+      drawerBody.scrollTop = 0;
     }
 
     function renderRatesDrawer() {
@@ -1174,6 +1194,7 @@
 
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
+      drawerBody.scrollTop = 0;
     }
 
     function renderPaymentsDrawer() {
@@ -1298,6 +1319,7 @@
 
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
+      drawerBody.scrollTop = 0;
     }
 
     /* ============================
